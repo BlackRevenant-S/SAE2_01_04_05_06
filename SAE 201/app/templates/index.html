@@ -21,7 +21,7 @@
 
 
 
-        <!-- Stylesheet -->
+        <!-- CLASSIC PAGE SETUP -->
         <link rel="stylesheet" href="./static/index.css">
         <meta charset="UTF-8">
         <title>Accueil</title>
@@ -30,14 +30,11 @@
     <body>
 
         <nav>
-            <a href="{{ url_for('index') }}"></a>
-
-            <div id="lien_nav">
-            <a>
+            <a href="{{ url_for('index') }}">
                 <h3>ThermEau</h3>
             </a>
             
-            <a>
+            <a href="{{ url_for('index') }}">
                 <h5>Acceuil</h5>
             </a>
 
@@ -47,6 +44,10 @@
 
             <a>
                 <h5>À propos</h5>
+            </a>
+
+            <a href="{{ url_for('testfolium') }}">
+                <h5>Test (temporaire)</h5>
             </a>
         </nav>
 
