@@ -2,16 +2,16 @@
 /* NAV */
 
 nav {
-
+    display: inline-block;
 }
 
-h3 {
+nav h2 {
     font-family: Jockey One;
     font-size: 50px;
 }
 
 
-h5{
+nav h3{
     font-size: 20px;
     font-weight: bold;
     font-family: Unbounded;
