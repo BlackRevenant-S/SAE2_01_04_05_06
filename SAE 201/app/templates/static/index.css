@@ -1,1 +1,43 @@
-nav 
+
+/* NAV */
+
+nav {
+
+}
+
+h3 {
+    font-family: Jockey One;
+    font-size: 50px;
+}
+
+
+h5{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Unbounded;
+}
+
+
+
+
+
+/* PAGE */
+
+
+h1{
+    font-family: Unbounded;
+    font-size: 49px;
+    font-weight: bold;
+}
+
+h4{
+    font-family: Jockey One;
+    font-size: 32px;
+}
+
+
+p{
+    font-size: 22px;
+    font-family: Jost;
+}
+
