@@ -2,7 +2,10 @@
 /* NAV */
 
 nav {
-    display: inline-block;
+    display: sticky;
+    background-color: #7698AD;
+    width: 101.5%;
+    margin-left: -0.55%;
 }
 
 nav h2 {
@@ -20,6 +23,7 @@ nav h3{
 .nav_links{
     text-align: center;
     border: solid;
+
 }
 
 
