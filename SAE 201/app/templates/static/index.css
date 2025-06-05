@@ -29,12 +29,12 @@ nav a{
     font-weight: bold;
     font-family: Unbounded;
     margin: auto;
-    margin-left: 55%;
+    margin-right: 3%;
 }
 
 #nav_links a {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
  
 }
 
@@ -54,7 +54,7 @@ h1{
 
 h4{
     font-family: Jockey One;
-    font-size: 32px;
+    font-size: 1px;
 }
 
 
