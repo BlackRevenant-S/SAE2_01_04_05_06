@@ -41,25 +41,49 @@ nav a{
 
 
 
-
+body{
+    background-color: brown;
+}
 
 /* PAGE */
 
+aside{
+    position: absolute;
+    border: solid;
+    background-color: white;
+
+    height: 240px;
+    width: 350px;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 30px;
+
+
+
+}
+
 
 h1{
+    position: relative;
     font-family: Unbounded;
-    font-size: 49px;
+    font-size: 18px;
     font-weight: bold;
-}
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    text-align: center;
 
-h4{
-    font-family: Jockey One;
-    font-size: 1px;
 }
-
 
 p{
-    font-size: 22px;
+    font-size: 15px;
     font-family: Jost;
+    opacity: 60%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    
 }
 
