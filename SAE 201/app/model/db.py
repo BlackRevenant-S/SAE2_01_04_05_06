@@ -87,3 +87,6 @@ def get_station_details(code_station):
     JOIN region on departement.code_region = region.code_region \
     JOIN cours_eau on station.code_cours_eau = cours_eau.code_cours_eau \
     WHERE code_station = {code_station}"
+
+    station_details = pd.read_sql_query(query, conn)
+    return station_details
