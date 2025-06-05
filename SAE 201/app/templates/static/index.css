@@ -2,29 +2,43 @@
 /* NAV */
 
 nav {
-    display: sticky;
+    display: block flex;
     background-color: #7698AD;
-    width: 101.5%;
     margin-left: -0.55%;
+    margin-top: -0.55%;
+    width: 101.05%;
+    height: 80px;
 }
 
-nav h2 {
+nav a{
+    color: white;
+    text-decoration: none;
+}
+
+#logo{
     font-family: Jockey One;
-    font-size: 50px;
+    font-size: 250%;
+    margin-left: 3%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 
-nav h3{
-    font-size: 20px;
+#nav_links{
+    font-size: 120%;
     font-weight: bold;
     font-family: Unbounded;
+    margin: auto;
+    margin-left: 55%;
 }
 
-.nav_links{
-    text-align: center;
-    border: solid;
-
+#nav_links a {
+    padding-left: 20px;
+    padding-right: 20px;
+ 
 }
+
+
 
 
 
