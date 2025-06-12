@@ -34,7 +34,7 @@ def style_function(feature):
     return {
         "fillColor": couleur,
         "color": "black",
-        "weight": 2,
+        "weight": 1,
         "fillOpacity": 0.8,
     }
 
@@ -74,7 +74,7 @@ geojson_layer_dep = folium.GeoJson(
     name="départements",
     style_function=lambda feature: {
         "fillColor": "none",
-        "color": "gray",
+        "color": "black",
         "weight": 1,
         "fillOpacity": 0,
     },
