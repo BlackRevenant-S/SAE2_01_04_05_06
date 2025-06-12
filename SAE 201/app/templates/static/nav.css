@@ -1,0 +1,39 @@
+
+/* NAV */
+
+nav {
+    display: block flex;
+    background-color: #7698AD;
+    margin-left: -0.55%;
+    margin-top: -0.55%;
+    width: 101.05%;
+    height: 80px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+}
+
+#logo{
+    font-family: Jockey One;
+    font-size: 250%;
+    margin-left: 3%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+#nav_links{
+    font-size: 120%;
+    font-weight: bold;
+    font-family: Unbounded;
+    margin: auto;
+    margin-right: 3%;
+}
+
+#nav_links a {
+    padding-left: 35px;
+    padding-right: 35px;
+ 
+}
