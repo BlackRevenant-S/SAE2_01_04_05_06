@@ -1,0 +1,9 @@
+<style>
+    path.leaflet-interactive:focus {
+        outline: none !important;
+    }
+    svg path {
+        outline: none !important;
+        stroke-linecap: round;
+    }
+</style>
