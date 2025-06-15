@@ -2,10 +2,39 @@ import folium
 import requests
 from folium import MacroElement
 from jinja2 import Template
+import sqlalchemy as sa
+import pandas as pd
+
+
 
 #Télécharger le GeoJSON des régions françaises qui sont sur un github
 url = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions-version-simplifiee.geojson"
 geojson_data = requests.get(url).json()
+
+##########################################
+#point station
+##########################################
+
+user = "postgres"
+password = "vitrygtr"
+host = "localhost"
+port = 5432
+dbname = "postgres"
+
+
+url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
+engine = sa.create_engine(url)
+
+
+
+query = "SELECT nom, latitude, longitude FROM stations_eau;"
+df = pd.read_sql(query, engine)
+
+for _, row in df.iterrows():
+    folium.Marker(
+        location=[row["latitude"], row["longitude"]],
+        tooltip=row["nom"]
+    ).add_to(carte)
 
 # Dictionnaire avec une couleur par région 
 couleurs_regions = {
