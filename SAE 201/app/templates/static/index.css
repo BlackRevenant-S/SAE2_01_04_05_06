@@ -4,24 +4,26 @@ aside{
     position: absolute;
     background-color: white;
 
-    height: 240px;
-    width: 350px;
+    height: 30%;
+    width: 23%;
 
-    border-top-left-radius: 15px;
+    top:20%;
+    left:2%;
+
+    border-top-left-radius: 13px;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 30px;
 
     box-shadow: rgba(0, 0, 0, 0.303) 0px 3px 5px ;
 
-
 }
 
 
-h1{
+aside h1{
     position: relative;
     font-family: Unbounded;
-    font-size: 18px;
+    font-size: 120%;
     font-weight: bold;
     margin-left: 10%;
     margin-right: 10%;
@@ -30,13 +32,36 @@ h1{
 
 }
 
-p{
-    font-size: 15px;
+aside p{
+    font-size: 100%;
     font-family: Jost;
     opacity: 60%;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 10%;
     
+}
+
+
+section{
+    width: 40%;
+    height: 45%;
+
+    position: absolute;
+    right:0.5%;
+    bottom: 2%;
+
+    background-color: white;
+
+    border: solid;
+    border-radius: 15px;
+
+    box-shadow: rgba(0, 0, 0, 0.653) 0px 2px 3px ;
+}
+
+section div{
+    background-color: rgba(118, 152, 173, 0.65);
+    height: 20%;
+    width: 100%;
 }
 
