@@ -28,7 +28,7 @@ def index():
     # Affichage du template
     return render_template('index.html')
 
-@app.route('/A propos')
+@app.route('/A_propos')
 def about():
     # Affichage du template
     return render_template('about.html')

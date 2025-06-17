@@ -126,6 +126,9 @@ with open("SAE 201/app/templates/carte.html", "a") as f:
     }
 </style>""")
   
+
+
+  
 with open("SAE 201/app/templates/carte.html", "a") as ff:
    ff.write("""<script>
 function onMarkerClick(e) {

@@ -54,7 +54,8 @@
 
 
         </nav>
-        <iframe src="{{ url_for('carte')}}" frameborder="3"></iframe>
+
+        <iframe src="{{url_for ('carte')}}"></iframe>
 
 
         <aside> <!-- text -->
@@ -72,7 +73,7 @@
 
         <!-- Graph section -->
 
-        <section id="details">
+        <section id="details" hidden>
             <div>
                 <h2>nom de la station (code)</h2>
 
@@ -94,7 +95,6 @@
         </section>
       <script>
 
-            document.getElementById("details").style.visibility = "hidden";
 
             function hide_section() {
                 document.getElementById("details").style.visibility = "hidden";
@@ -110,18 +110,12 @@
                 
 
 
-    // Écouter les messages reçus depuis l’iframe
-    window.addEventListener('message', function(event) {
-      // Optionnel : sécuriser ici en vérifiant l'origine
-      // if (event.origin !== "http://ton-domaine.com") return;
-
-      // Vérifier que c’est un clic sur un marker
-      if (event.data && event.data.action === 'markerClick') {
+       /* window.addEventListener('message', function(event) {
+        if (event.data && event.data.action === 'markerClick') {
         const nom = event.data.name || "point inconnu";
         alert("Vous avez cliqué sur : " + nom);
-        // Tu peux aussi ici ouvrir une vraie modale Bootstrap, afficher du contenu, etc.
-      }
-    });
+        }
+        });*/
   </script>
   
     </body>
