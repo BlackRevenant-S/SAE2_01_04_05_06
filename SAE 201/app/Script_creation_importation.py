@@ -9,50 +9,6 @@ response = requests.get(url)
 # Vérifier si la requête a réussi
 if response.status_code == 200:
 
-    # Connect to an existing database
-    conn = psycopg2.connect("dbname=test user=postgres")
-
-    # Open a cursor to perform database operations
-    cur = conn.cursor()
-
-
-    # Execute a command: this creates a new table
-    cur.execute("""create table region IF NOT EXISTS (
-	code_region varchar(255) PRIMARY KEY,
-	libelle_region varchar(255)
-    );
-
-    create table departement IF NOT EXISTS (
-	code_departement varchar(255) primary key,
-	libelle_departement varchar(255),
-	code_region varchar(255),
-	foreign key(code_region) references region(code_region)
-    );
-
-    create table cours_eau IF NOT EXISTS (
-	code_cours_eau varchar(255) primary key,
-	libelle_cours_eau varchar(255)
-    );
-
-    create table commune IF NOT EXISTS (
-	code_commune varchar(255) primary key,
-	libelle_commune varchar(255),
-	code_departement varchar(255),
-	foreign key(code_departement) references departement(code_departement)
-    );
-
-    create table station IF NOT EXISTS (
-	code_station varchar(255) primary key,
-	libelle_station varchar(255),
-	longitude float,
-	latitude float,
-	altitude float,
-	code_cours_eau varchar(255),
-	code_commune varchar(255),
-	foreign key(code_cours_eau) references cours_eau(code_cours_eau),
-	foreign key(code_commune) references commune(code_commune)
-    );""")
-
     # Charger les données JSON depuis la réponse de l'API
     data = response.json()["data"]
 

@@ -28,7 +28,7 @@ engine = sa.create_engine(url)
 # 2. Créer une carte blanche centrée sur la France
 carte = folium.Map(location=[46.5, 2.2], zoom_start=6.2, tiles=None)
 
-query = "SELECT libelle_station, latitude, longitude FROM station;"
+query = "SELECT libelle_station, latitude, longitude FROM station"
 df = pd.read_sql(query, engine)
 
 for _, row in df.iterrows():
@@ -110,3 +110,5 @@ geojson_layer_dep = folium.GeoJson(
 geojson_layer_dep.add_to(carte)
 
 carte.save("carte.html")
+
+
