@@ -13,8 +13,10 @@
             <link href="https://fonts.googleapis.com/css2?family=Unbounded" rel="stylesheet">
         
             <!-- PAGE FONT -->
-        
             <link href="https://fonts.googleapis.com/css2?family=Jost" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
 
         <!-- CLASSIC PAGE SETUP -->
@@ -39,13 +41,24 @@
                     Accueil
                 </a>
 
-                <a href="">
+                <a href="{{ url_for('about')}}">
                     À propos
                 </a>
             </div>
 
 
         </nav>
+        <header>
+            <img src="./static/banniere_a_propos.jpg" alt="Bannière_à_propos" id="banniere">
+        </header>
+        <article>
+            <div id="first-block">
+                <p class="ubuntu-font">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </article>
         
         <!-- page content -->
 
