@@ -28,6 +28,10 @@ def index():
     # Affichage du template
     return render_template('index.html')
 
+#####################################################################
+# CONTROLEUR : LIAISON AVEC LA BASE DE DONNEES
+#####################################################################
+
 
 
 if __name__ == '__main__':
