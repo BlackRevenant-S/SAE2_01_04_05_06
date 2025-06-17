@@ -1,0 +1,47 @@
+from flask import Flask, render_template, request, jsonify
+import requests
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api/temperature')
+def get_temperature():
+    code = request.args.get("code")
+    date_min = request.args.get("date_min")
+    date_max = request.args.get("date_max")
+
+    all_data = []
+    page = 1
+    while True:
+        url = "https://hubeau.eaufrance.fr/api/v1/temperature/chronique"
+        params = {
+            "code_station": code,
+            "date_debut_prelevement": date_min,
+            "date_fin_prelevement": date_max,
+            "page": page,
+            "size": 1000
+        }
+        r = requests.get(url, params=params)
+        chunk = r.json().get("data", [])
+        if not chunk:
+            break
+        all_data.extend(chunk)
+        page += 1
+
+    df = pd.DataFrame(all_data)
+    if df.empty:
+        return jsonify({"x": [], "y": []})
+
+    df["date"] = pd.to_datetime(df["date_mesure_temp"])
+    df = df.sort_values("date")
+    return jsonify({
+        "x": df["date"].dt.strftime("%Y-%m-%d %H:%M:%S").tolist(),
+        "y": df["resultat"].tolist()
+    })
+
+if __name__ == '__main__':
+    app.run(debug=True)
