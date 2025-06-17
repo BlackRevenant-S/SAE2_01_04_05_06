@@ -2,40 +2,46 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test Température</title>
+    <title>Graphique Température - Sélection de station</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h2>Visualisation Température – Station test</h2>
+    <h2>Température des cours d'eau (API Hub'Eau)</h2>
 
-    <label>Code station :</label>
-    <select id="stationCode">
-    <option value="04025100">NIEVRE à COULANGES-LES-NEVERS</option>
-    <option value="04380200">SEINE à PARIS</option>
-    <option value="06002450">DORDOGNE à BERGERAC</option>
-    <option value="B5010001">GARONNE à TOULOUSE</option>
-</select>
+    <label for="stationSelect">Choisir une station :</label>
+    <select id="stationSelect"></select>
 
     <br><br>
 
-    <label>Date de début :</label>
+    <label>Date début :</label>
     <input type="date" id="dateMin" value="2023-01-01">
-    <label>Date de fin :</label>
+    <label>Date fin :</label>
     <input type="date" id="dateMax" value="2023-12-31">
-    <br><br>
-
     <button onclick="loadGraph()">Afficher</button>
 
-    <div id="graph" style="width: 100%; height: 600px;"></div>
+    <div id="graph" style="width: 100%; height: 600px; margin-top: 30px;"></div>
 
     <script>
+        // Charge la liste des stations au chargement de la page
+        fetch('/api/stations')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.getElementById('stationSelect');
+                data.forEach(station => {
+                    const option = document.createElement('option');
+                    option.value = station.code;
+                    option.textContent = station.nom;
+                    select.appendChild(option);
+                });
+            });
+
         function loadGraph() {
-            const code = document.getElementById("stationCode").value;
-            const dateMin = document.getElementById("dateMin").value;
-            const dateMax = document.getElementById("dateMax").value;
+            const code = document.getElementById('stationSelect').value;
+            const dateMin = document.getElementById('dateMin').value;
+            const dateMax = document.getElementById('dateMax').value;
 
             fetch(`/api/temperature?code=${code}&date_min=${dateMin}&date_max=${dateMax}`)
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(data => {
                     if (data.x.length === 0) {
                         document.getElementById("graph").innerHTML = "Aucune donnée disponible.";
@@ -49,7 +55,7 @@
                         mode: 'lines+markers',
                         name: 'Température'
                     }], {
-                        title: `Température – Station ${code}`,
+                        title: `Évolution de la température`,
                         xaxis: { title: 'Date' },
                         yaxis: { title: 'Température (°C)' }
                     });
