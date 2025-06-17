@@ -108,14 +108,14 @@
 
 
                 
+        
 
-
-       /* window.addEventListener('message', function(event) {
-        if (event.data && event.data.action === 'markerClick') {
-        const nom = event.data.name || "point inconnu";
-        alert("Vous avez cliqué sur : " + nom);
-        }
-        });*/
+            window.addEventListener('message', function(event) {
+            if (event.data && event.data.action === "markerClick") {
+            const nom = event.data.name || "point inconnu";
+            console.log('bien reçu',event.data);
+            }
+        });
   </script>
   
     </body>

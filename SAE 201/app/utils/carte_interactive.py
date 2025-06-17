@@ -129,17 +129,17 @@ with open("SAE 201/app/templates/carte.html", "a") as f:
 
 
   
-with open("SAE 201/app/templates/carte.html", "a") as ff:
-   ff.write("""<script>
-function onMarkerClick(e) {
-    window.parent.postMessage({action: 'markerClick', name: 'Nom du marker'}, '*');
+with open("SAE 201/app/templates/carte.html", "a") as g:
+   g.write("""<script>
+function onMarkerClick(nom) {
+    window.parent.postMessage( nom, '*');
 }
 
-// Exemple d’ajout d’un listener sur tous les markers (Leaflet)
+// Exemple d'ajout d'un listener sur tous les markers (Leaflet)
 setTimeout(() => {
   for(let key in window) {
     if(window[key] instanceof L.Marker) {
-      window[key].on('click', onMarkerClick);
+      window[key].on('click', onMarkerClick());
     }
   }
 }, 500);
