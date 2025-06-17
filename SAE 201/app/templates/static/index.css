@@ -63,5 +63,40 @@ section div{
     background-color: rgba(118, 152, 173, 0.65);
     height: 20%;
     width: 100%;
+    border-top-left-radius: 12.5px;
+    border-top-right-radius: 12.5px;
+    margin-top: 0;
 }
+
+
+section div h2{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 3%;
+    margin-left: 10%;
+}
+
+section div a{
+
+    display: inline-block;
+
+    width: 6%;
+    height: 50%;
+
+    position: relative;
+    top:-45%;
+    left:85%
+}
+
+section div img{
+    width: 100%;
+
+}
+
+
+.folium-map{
+    z-index: -100;
+}
+
+
 
