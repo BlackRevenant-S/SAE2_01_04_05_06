@@ -2,7 +2,7 @@ import folium
 import requests
 from folium import MacroElement
 from jinja2 import Template
-import sqlalchemy as sa
+import sqlalchemy as sa 
 import pandas as pd
 
 
@@ -109,6 +109,18 @@ geojson_layer_dep = folium.GeoJson(
 )
 geojson_layer_dep.add_to(carte)
 
-carte.save("carte.html")
+carte.save("SAE 201/app/templates/carte.html")
 
+
+
+with open("SAE 201/app/templates/carte.html", "a") as f:
+  f.write("""<style>
+    path.leaflet-interactive:focus {
+        outline: none;
+    }
+    svg path {
+        outline: none;
+        stroke-linecap: round;
+    }
+</style>""")
 
