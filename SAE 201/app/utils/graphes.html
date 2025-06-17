@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Température</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h2>Visualisation Température – Station test</h2>
+
+    <label>Code station :</label>
+    <select id="stationCode">
+    <option value="04025100">NIEVRE à COULANGES-LES-NEVERS</option>
+    <option value="04380200">SEINE à PARIS</option>
+    <option value="06002450">DORDOGNE à BERGERAC</option>
+    <option value="B5010001">GARONNE à TOULOUSE</option>
+</select>
+
+    <br><br>
+
+    <label>Date de début :</label>
+    <input type="date" id="dateMin" value="2023-01-01">
+    <label>Date de fin :</label>
+    <input type="date" id="dateMax" value="2023-12-31">
+    <br><br>
+
+    <button onclick="loadGraph()">Afficher</button>
+
+    <div id="graph" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        function loadGraph() {
+            const code = document.getElementById("stationCode").value;
+            const dateMin = document.getElementById("dateMin").value;
+            const dateMax = document.getElementById("dateMax").value;
+
+            fetch(`/api/temperature?code=${code}&date_min=${dateMin}&date_max=${dateMax}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.x.length === 0) {
+                        document.getElementById("graph").innerHTML = "Aucune donnée disponible.";
+                        return;
+                    }
+
+                    Plotly.newPlot('graph', [{
+                        x: data.x,
+                        y: data.y,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        name: 'Température'
+                    }], {
+                        title: `Température – Station ${code}`,
+                        xaxis: { title: 'Date' },
+                        yaxis: { title: 'Température (°C)' }
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
