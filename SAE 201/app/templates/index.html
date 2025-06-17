@@ -24,6 +24,9 @@
         <meta charset="UTF-8">
         <title>Accueil</title>
         
+
+
+
     </head>
 
 
@@ -80,6 +83,23 @@
 
         </section>
 
+
+
+         <script>
+    // Écouter les messages reçus depuis l’iframe
+    window.addEventListener('message', function(event) {
+      // Optionnel : sécuriser ici en vérifiant l'origine
+      // if (event.origin !== "http://ton-domaine.com") return;
+
+      // Vérifier que c’est un clic sur un marker
+      if (event.data && event.data.action === 'markerClick') {
+        const nom = event.data.name || "point inconnu";
+        alert("Vous avez cliqué sur : " + nom);
+        // Tu peux aussi ici ouvrir une vraie modale Bootstrap, afficher du contenu, etc.
+      }
+    });
+  </script>
+  
 
     </body>
 
