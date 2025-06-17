@@ -1,0 +1,18 @@
+#banniere {
+    display: inline-block;
+    margin-left: -0.53%;
+    width: 101.05%;
+    margin-top: -38%;
+    clip-path: polygon(0% 50%, 100% 50%, 100% 70%, 0% 70%);
+}
+
+#first-block {
+    background-color: gray;
+    margin-left: 10%;
+}
+
+.ubuntu-font {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
