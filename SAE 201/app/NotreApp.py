@@ -5,7 +5,8 @@
 from flask import Flask, render_template, request
 import numpy as np
 import folium
-
+import pandas as pd
+import jsonify
 
 #####################################################################
 # CONFIGURATION
