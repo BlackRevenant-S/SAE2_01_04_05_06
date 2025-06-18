@@ -8,9 +8,32 @@
 <body>
     <h2>Température des cours d'eau (API Hub'Eau)</h2>
 
+    <label for="stationSelect">Choisir une station :</label>
+    <select id="stationSelect"></select>
+
+    <br><br>
+
+    <label>Date début :</label>
+    <input type="date" id="dateMin" value="2023-01-01">
+    <label>Date fin :</label>
+    <input type="date" id="dateMax" value="2023-12-31">
+    <button onclick="loadGraph()">Afficher</button>
+
     <div id="graph" style="width: 100%; height: 600px; margin-top: 30px;"></div>
 
     <script>
+        // Charge la liste des stations au chargement de la page
+        fetch('/api/stations')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.getElementById('stationSelect');
+                data.forEach(station => {
+                    const option = document.createElement('option');
+                    option.value = station.code;
+                    option.textContent = station.nom;
+                    select.appendChild(option);
+                });
+            });
 
         function loadGraph() {
             const code = document.getElementById('stationSelect').value;
