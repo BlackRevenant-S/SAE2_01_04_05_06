@@ -79,9 +79,10 @@
 
         <!-- Graph section -->
 
-        <section id="details" hidden>
+        <section id="details" style="visibility: hidden;">
             <div>
                 <h2 id="titre_dynamique">nom de la station </h2>
+
 
             
                 <button>
@@ -92,16 +93,14 @@
                 <button id="close" onclick="hide_section()">
                     <img src="static/cancel_icon.png">
                 </button>
+
+                
             
             </div>
 
+            <iframe src="{{url_for ('graphes')}}"></iframe>
+
             <!-- presset pr les graphes-->
-
-            
-
-
-
-
 
         </section>
 
