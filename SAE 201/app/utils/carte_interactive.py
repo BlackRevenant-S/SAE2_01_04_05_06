@@ -27,7 +27,14 @@ url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
 engine = sa.create_engine(url)
 
 # 2. Créer une carte blanche centrée sur la France
-carte = folium.Map(location=[46.5, 2.2], zoom_start=6.2, tiles=None)
+carte = folium.Map(location=[46.5, 2.2], 
+                    zoom_start=6.2, 
+                    tiles=None,
+                    zoom_control=False,
+                    scrollWheelZoom=False,
+                    dragging=False)
+
+                
 
 query = "SELECT libelle_station, code_station, latitude, longitude FROM station"
 df = pd.read_sql(query, engine)
@@ -175,17 +182,31 @@ with open("SAE 201/app/templates/carte.html",'r') as mapfile:
 
 # JS injection into html
 
+#//if (folium.map.zoom<6.2){%s.style.visibility="visible"} marker_list(html)[i],
+
 with open("SAE 201/app/templates/carte.html", "a") as g:
    
     g.write("""<script>""")
 
     for i in range(len(marker_list(html))):
        g.write("""
-
-        %s.addEventListener("click",%sFunction);
+                %s.addEventListener("click",%sFunction);
+               
                
         function %sFunction(){top.document.getElementById("details").style.visibility = "visible"; top.document.getElementById("titre_dynamique").innerHTML = "%s";};""" % 
         (marker_list(html)[i], marker_list(html)[i] ,marker_list(html)[i],get_marker_name(html,marker_list(html)[i])))
-       
+  
 
+    #g.write("""
+    #        
+     #       function hide(target){target.style.visibility = "hidden"};
+      #      document.getElementByClassName("leaflet-pane leaflet-marker-pane").addEventListener("load", hide(document.getElementByClassname("leaflet-pane leaflet-marker-pane")));
+       #     document.getElementByClassName("leaflet-pane leaflet-shadow-pane").addEventListener("load", hide(document.getElementByClassname("leaflet-pane leaflet-shadow-pane")));
+
+            
+        #    
+         #   document.getElementByClassName("leaflet-pane leaflet-overlay-pane").addEventListener("click",firstzoom);
+          #           
+           # function firstzoom(){document.getElementById("leaflet-pane leaflet-marker-pane").style.visibility = "visible"; document.getElementById("leaflet-pane leaflet-shadow-pane").style.visibility = "visible";};""" )
+     #presettings pour les graphes:     top.document.getElementById("").
     g.write("""</script>""")

@@ -71,9 +71,15 @@
         </aside>
 
 
+        <!-- Refresh button -->
+
+        <a id="return_button" href="{{ url_for('index') }}">
+            <img src="static/return_icon.png">
+        </a>
+
         <!-- Graph section -->
 
-        <section id="details">
+        <section id="details" hidden>
             <div>
                 <h2 id="titre_dynamique">nom de la station </h2>
 
@@ -89,22 +95,34 @@
             
             </div>
 
+            <!-- presset pr les graphes-->
+
+            
+
+
 
 
 
         </section>
-      <script>
+
+    
+
+    
 
 
-            function hide_section() {
-                document.getElementById("details").style.visibility = "hidden";
-            };
+    <script>
 
-            function show_section() {
-                document.getElementById("details").style.visibility = "visible";
-            };
-        
-  </script>
+
+        function hide_section() {
+            document.getElementById("details").style.visibility = "hidden";
+        };
+
+        // unused
+        function show_section() {
+            document.getElementById("details").style.visibility = "visible";
+        };
+    
+    </script>
   
     </body>
 

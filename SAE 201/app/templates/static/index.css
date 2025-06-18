@@ -99,6 +99,20 @@ section div img{
 }
 
 
+/* return button */
+
+#return_button{
+    position: absolute;
+    top:12%;
+    right:2%;
+    width: 5%;
+}
+
+#return_button img {
+    width: 100%;
+}
+
+
 
 /* MAP */
 iframe{
