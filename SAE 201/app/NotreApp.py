@@ -28,6 +28,18 @@ def index():
     # Affichage du template
     return render_template('index.html')
 
+@app.route('/A_propos')
+def about():
+    # Affichage du template
+    return render_template('about.html')
+
+
+@app.route('/carte')
+def carte():
+    # Affichage du template
+    return render_template('carte.html')
+
+
 #####################################################################
 # CONTROLEUR : LIAISON AVEC LA BASE DE DONNEES
 #####################################################################

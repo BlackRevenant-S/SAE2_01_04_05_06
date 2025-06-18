@@ -23,7 +23,13 @@
 
         <meta charset="UTF-8">
         <title>Accueil</title>
-        
+    
+
+
+
+
+
+
     </head>
 
 
@@ -41,14 +47,15 @@
                     Accueil
                 </a>
 
-                <a href="">
+                <a href="{{ url_for ('about')}}">
                     À propos
                 </a>
             </div>
 
 
         </nav>
-        <iframe src="carte.html" frameborder="3"></iframe>
+
+        <iframe src="{{url_for ('carte')}}"></iframe>
 
         <div id="contenu"></div>
         <aside> <!-- text -->
@@ -63,24 +70,42 @@
             </p>
         </aside>
 
-        <section ><!-- Graph section -->
+
+        <!-- Graph section -->
+
+        <section id="details">
             <div>
-                <h2>nom de la station (code)</h2>
+                <h2 id="titre_dynamique">nom de la station </h2>
 
             
-                <a>
+                <button>
                     <img src="static/full-screen_icon.png">
-                </a>
+                </button> 
 
-                <a>
+
+                <button id="close" onclick="hide_section()">
                     <img src="static/cancel_icon.png">
-                </a>
+                </button>
             
             </div>
 
+
+
+
         </section>
+      <script>
 
 
+            function hide_section() {
+                document.getElementById("details").style.visibility = "hidden";
+            };
+
+            function show_section() {
+                document.getElementById("details").style.visibility = "visible";
+            };
+        
+  </script>
+  
     </body>
 
 </html>

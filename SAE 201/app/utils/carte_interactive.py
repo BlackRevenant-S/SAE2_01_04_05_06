@@ -1,10 +1,11 @@
 import folium
+import folium.elements
 import requests
 from folium import MacroElement
 from jinja2 import Template
 import sqlalchemy as sa 
 import pandas as pd
-
+import re
 
 
 #Télécharger le GeoJSON des régions françaises qui sont sur un github
@@ -28,7 +29,7 @@ engine = sa.create_engine(url)
 # 2. Créer une carte blanche centrée sur la France
 carte = folium.Map(location=[46.5, 2.2], zoom_start=6.2, tiles=None)
 
-query = "SELECT libelle_station, latitude, longitude FROM station"
+query = "SELECT libelle_station, code_station, latitude, longitude FROM station"
 df = pd.read_sql(query, engine)
 
 for _, row in df.iterrows():
@@ -36,6 +37,10 @@ for _, row in df.iterrows():
         location=[row["latitude"], row["longitude"]],
         tooltip=row["libelle_station"]
     ).add_to(carte)
+
+    
+
+
 
 # Dictionnaire avec une couleur par région 
 couleurs_regions = {
@@ -77,7 +82,7 @@ geojson_layer = folium.GeoJson(
     tooltip=folium.GeoJsonTooltip(fields=["nom"], aliases=["Région :"]),
 )
 
-# 4. Ajouter le JS pour le zoom au clic (comme dans ton code)
+# 4. Ajouter le JS pour le zoom au clic
 zoom_js = MacroElement()
 zoom_js._template = Template("""
 {% macro script(this, kwargs) %}
@@ -92,7 +97,7 @@ geojson_layer.add_child(zoom_js)
 
 geojson_layer.add_to(carte)
 
-# Télécharger le GeoJSON des départements (inchangé)
+# Télécharger le GeoJSON des départements 
 url_dep = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"
 geojson_dep = requests.get(url_dep).json()
 
@@ -109,8 +114,8 @@ geojson_layer_dep = folium.GeoJson(
 )
 geojson_layer_dep.add_to(carte)
 
-carte.save("SAE 201/app/templates/carte.html")
 
+carte.save("SAE 201/app/templates/carte.html")
 
 
 with open("SAE 201/app/templates/carte.html", "a") as f:
@@ -123,4 +128,64 @@ with open("SAE 201/app/templates/carte.html", "a") as f:
         stroke-linecap: round;
     }
 </style>""")
+  
 
+
+# find all markers name
+def marker_list(html):
+    # getting marker string start and end
+    start_list = [m.start() for m in re.finditer('var marker_', html)]
+    end_list =  [m.start() for m in re.finditer(' = L.marker', html)]
+
+    # setting up complete list
+    complete_list = start_list
+
+    #filling complete list
+    for i in range(len(start_list)):
+        complete_list[i] = html[start_list[i]:end_list[i]]
+    
+
+
+    # clearing "var "
+    for j in range(len(complete_list)):
+        temp = complete_list[j]
+        start= temp.find("marker")
+        complete_list[j] = temp[start:]
+
+    #done
+    return complete_list
+
+
+
+def get_marker_name(html,marker_id):
+    search_marker = html.find(marker_id)
+    search_div = html[search_marker:]
+    search_div_start = search_div.find("<div>")+27
+    search_div_end = search_div.find("</div>")-18
+    div_content = search_div[search_div_start:search_div_end]
+
+    return div_content
+
+
+
+# html target setup
+
+with open("SAE 201/app/templates/carte.html",'r') as mapfile:
+    html = mapfile.read()
+
+# JS injection into html
+
+with open("SAE 201/app/templates/carte.html", "a") as g:
+   
+    g.write("""<script>""")
+
+    for i in range(len(marker_list(html))):
+       g.write("""
+
+        %s.addEventListener("click",%sFunction);
+               
+        function %sFunction(){top.document.getElementById("details").style.visibility = "visible"; top.document.getElementById("titre_dynamique").innerHTML = "%s";};""" % 
+        (marker_list(html)[i], marker_list(html)[i] ,marker_list(html)[i],get_marker_name(html,marker_list(html)[i])))
+       
+
+    g.write("""</script>""")
