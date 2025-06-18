@@ -73,9 +73,9 @@
 
         <!-- Graph section -->
 
-        <section id="details" hidden>
+        <section id="details">
             <div>
-                <h2>nom de la station (code)</h2>
+                <h2 id="titre_dynamique">nom de la station </h2>
 
             
                 <button>
@@ -103,19 +103,7 @@
             function show_section() {
                 document.getElementById("details").style.visibility = "visible";
             };
-
-
-
-
-                
         
-
-            window.addEventListener('message', function(event) {
-            if (event.data && event.data.action === "markerClick") {
-            const nom = event.data.name || "point inconnu";
-            console.log('bien reçu',event.data);
-            }
-        });
   </script>
   
     </body>
