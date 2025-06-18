@@ -26,6 +26,8 @@ dbname = "postgres"
 url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
 engine = sa.create_engine(url)
 
+
+
 # 2. Créer une carte blanche centrée sur la France
 carte = folium.Map(location=[46.5, 2.2], 
                     zoom_start=6.2, 
@@ -39,11 +41,13 @@ carte = folium.Map(location=[46.5, 2.2],
 query = "SELECT libelle_station, code_station, latitude, longitude FROM station"
 df = pd.read_sql(query, engine)
 
+
 for _, row in df.iterrows():
     folium.Marker(
         location=[row["latitude"], row["longitude"]],
         tooltip=row["libelle_station"]
     ).add_to(carte)
+
 
     
 
